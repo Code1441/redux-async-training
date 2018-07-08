@@ -13,7 +13,7 @@ button:active {
   transform: scale(1.03)
 }
 
-.dog-btn {
+.dog-btns button {
   padding: 10px;
   font-size: 1.2rem;
   color: white;
@@ -24,11 +24,13 @@ button:active {
   margin: 10px;
   cursor: pointer;
 }
-.dog-btn:first-of-type {
-  margin-left: 50px;
+
+.dog-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
 }
 
-img {
-  margin: 0 50px;
+.dog-img > img{
   border-radius: 5px;
 }

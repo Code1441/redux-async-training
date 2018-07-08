@@ -1,24 +1,31 @@
-import { takeLatest, call, put, all } from 'redux-saga/effects'
-import { API_CALL_REQUEST, API_CALL_SUCCESS, API_CALL_FAILURE, START_API_CALL_REQUEST } from '../actionTypes'
+import { takeLatest, call, put, all, race, take } from 'redux-saga/effects'
+import { API_CALL_REQUEST, API_CALL_SUCCESS, API_CALL_FAILURE, START_DOG_SHOW, STOP_DOG_SHOW } from '../actionTypes'
 import action from '../actions';
 import { delay, getDog } from './utils'
 
 export function* watchDogFetching() {
-  yield takeLatest([API_CALL_REQUEST, START_API_CALL_REQUEST], showDog);
+  yield takeLatest([API_CALL_REQUEST, START_DOG_SHOW], showDog);
 }
 
 function* showDog({ type }) {
   if (type === API_CALL_REQUEST) {
-    yield call(dogFetchingSaga);
-  } else if (type === START_API_CALL_REQUEST) {
-    while (true) {
-      yield call(delay, 1000);
-      yield call(dogFetchingSaga);
-    }
+    yield call(dogFetching);
+  } else if (type === START_DOG_SHOW) {
+    yield race({
+      start: call(startDogShowing),
+      stop: take(STOP_DOG_SHOW)
+    })
   }
 }
 
-function* dogFetchingSaga() {
+function* startDogShowing() {
+  while (true) {
+    yield call(delay, 1000);
+    yield call(dogFetching);
+  }
+}
+
+function* dogFetching() {
   try {
     const response = yield call(getDog);
     const dog = response.message;
@@ -34,4 +41,3 @@ export default function* rootSaga() {
     watchDogFetching()
   ])
 }
-
