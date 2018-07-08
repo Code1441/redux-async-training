@@ -5,15 +5,17 @@ body {
 }
 
 button:focus,
-button:active {
+button:active,
+input:focus,
+input:active {
   outline: none;
 }
 
-button:active {
+.dog-btns:active {
   transform: scale(1.03)
 }
 
-.dog-btns button {
+.dog-btns{
   padding: 10px;
   font-size: 1.2rem;
   color: white;
@@ -23,6 +25,21 @@ button:active {
   border-radius: 8px;
   margin: 10px;
   cursor: pointer;
+}
+
+.show-btn {
+  width: 350px;
+}
+
+.dog-btns-input{
+  background-color: white;
+  font-size: 1rem;
+  color: #6eab6a;
+  width: 40px;
+  height: 20px;
+  border-radius: 8px;
+  padding: 10px 0;
+  border: 2px solid #6eab6a;
 }
 
 .dog-container {

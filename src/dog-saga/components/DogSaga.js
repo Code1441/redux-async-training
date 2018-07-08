@@ -4,19 +4,38 @@ import { connect } from 'react-redux'
 import { API_CALL_REQUEST, START_DOG_SHOW, STOP_DOG_SHOW } from '../actionTypes';
 
 class DogSaga extends React.Component {
+  state = {
+    seconds: 1
+  }
+
+  handleInputChange = event => {
+    const seconds = event.target.value || 1;
+    this.setState({seconds})
+  }
+
   render() {
     const { getDog, isFetching, dog, showDog, stopDog } = this.props;
-
+    const { seconds } = this.state;
+    
     return (
       <div className="dog-container">
-        <div className="dog-btns">
-          <button onClick={getDog}>
+        <div>
+          <button onClick={getDog} className="dog-btns">
             Get random dog
           </button>
-          <button onClick={showDog}>
-            Show dog every second
-          </button>
-          <button onClick={stopDog}>
+          <input 
+            type="text"
+            className="dog-btns-input"
+            onChange={this.handleInputChange}
+            placeholder="sec.."
+          />
+          <input 
+            type="submit"
+            className="dog-btns  show-btn"
+            onClick={() => { showDog(seconds) }}
+            value={`Show random dog every ${seconds} second(s)`}
+          />
+          <button onClick={stopDog} className="dog-btns">
             STOP
           </button>
         </div>
@@ -32,7 +51,7 @@ class DogSaga extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     getDog: () => dispatch(action(API_CALL_REQUEST)),
-    showDog: () => dispatch(action(START_DOG_SHOW)),
+    showDog: sec => dispatch(action(START_DOG_SHOW, sec)),
     stopDog: () => dispatch(action(STOP_DOG_SHOW))
   }
 }

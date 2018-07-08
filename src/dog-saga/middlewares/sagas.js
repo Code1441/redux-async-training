@@ -7,20 +7,20 @@ export function* watchDogFetching() {
   yield takeLatest([API_CALL_REQUEST, START_DOG_SHOW], showDog);
 }
 
-function* showDog({ type }) {
+function* showDog({ type, payload }) {
   if (type === API_CALL_REQUEST) {
     yield call(dogFetching);
   } else if (type === START_DOG_SHOW) {
     yield race({
-      start: call(startDogShowing),
+      start: call(startDogShowing, payload),
       stop: take(STOP_DOG_SHOW)
     })
   }
 }
 
-function* startDogShowing() {
+function* startDogShowing(sec) {
   while (true) {
-    yield call(delay, 1000);
+    yield call(delay, sec * 1000);
     yield call(dogFetching);
   }
 }
