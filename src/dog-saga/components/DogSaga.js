@@ -3,7 +3,7 @@ import action from '../actions';
 import { connect } from 'react-redux'
 import { API_CALL_REQUEST } from '../actionTypes';
 
-class App extends React.Component {
+class DogSaga extends React.Component {
   render() {
     const { getDog, isFetching, dog } = this.props;
     return (
@@ -16,7 +16,7 @@ class App extends React.Component {
         </button>
         { isFetching && <span>Fetching ...</span>}
         <div>
-          <img src={dog}/>
+          <img src={dog} alt='dog'/>
         </div>
       </div>
     );
@@ -26,4 +26,4 @@ class App extends React.Component {
 export default connect(
   state => ({...state}),
   dispatch => ({getDog: () => dispatch(action(API_CALL_REQUEST))})
-)(App);
+)(DogSaga);
