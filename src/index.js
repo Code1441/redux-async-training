@@ -1,16 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App';
-
-import { createStore, applyMiddleware } from 'redux'
 import { Provider } from 'react-redux'
-import reducer from './reducers'
 
-const store = createStore(reducer, applyMiddleware())
+import initializeDogSagaStore from './dog-saga/store'
+import DogSaga from './dog-saga/components/DogSaga';
+const store = initializeDogSagaStore();
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <DogSaga />
   </Provider>
 , document.getElementById('root'));
