@@ -12,4 +12,3 @@ ReactDOM.render(
     <DogSaga />
   </Provider>
 , document.getElementById('root'));
-

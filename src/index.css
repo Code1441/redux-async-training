@@ -17,12 +17,13 @@ input:active {
 
 .dog-btns{
   padding: 10px;
-  font-size: 1.2rem;
-  color: white;
-  background-color: #6eab6a;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: whitesmoke;
+  background-color: #5ca79b;
   font-family: 'Lato', sans-serif;
   border: none;
-  border-radius: 8px;
+  border-radius: 4px;
   margin: 10px;
   cursor: pointer;
 }
@@ -37,9 +38,11 @@ input:active {
   color: #6eab6a;
   width: 40px;
   height: 20px;
-  border-radius: 8px;
+  border-radius: 4px;
   padding: 10px 0;
-  border: 2px solid #6eab6a;
+  border: none;
+  border-bottom: 2px solid #6a9aab;
+  border-top: 2px solid #6a9aab;
 }
 
 .dog-container {
