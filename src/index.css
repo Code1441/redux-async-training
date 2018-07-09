@@ -11,6 +11,32 @@ input:active {
   outline: none;
 }
 
+.projects-wrapper {
+  margin: 10px 50px;
+  padding: 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background-color: #dedede;
+}
+
+.projects-wrapper li {
+  list-style-type: none;
+  margin: 10px;
+  padding: 10px;
+  background-color: white;
+}
+
+.projects-wrapper a{
+  color: rgb(66, 66, 66);
+  font-weight: normal;
+  text-decoration: none;
+}
+
+.projects-wrapper li:hover {
+  background-color: #5ca79b;
+  color: white;
+}
+
 .dog-btns:active {
   transform: scale(1.03)
 }
